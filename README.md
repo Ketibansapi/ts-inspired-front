@@ -3,7 +3,7 @@
 
 ## React+Typescript Simple Application
 
-User can add, remove and random their names. Implementing typescript on react, packed on webpack. Inpired-mobile assesstment.
+User can add, remove and random their names. Implementing typescript on react, packed on webpack. Inpired-mobile assessment.
 
 
 ### Screenshot
