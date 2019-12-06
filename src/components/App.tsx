@@ -41,10 +41,9 @@ export class App extends React.Component<{}, IState> {
 
   public randomTask(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    let randomNum = Math.floor(Math.random() *  this.state.tasks.length);
-    let name = this.state.tasks[randomNum];
-    {name};
-    alert(name);
+    let randomNum = Math.floor(Math.random() * this.state.tasks.length);
+    let task = this.state.tasks[randomNum];
+    alert(task.value);
   }
 
   public renderTasks(): JSX.Element[] {
