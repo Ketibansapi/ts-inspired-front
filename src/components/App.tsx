@@ -39,9 +39,11 @@ export class App extends React.Component<{}, IState> {
     this.setState({ tasks });
   }
 
-  public randomTask(): void {
+  public randomTask(e: React.FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
     let randomNum = Math.floor(Math.random() *  this.state.tasks.length);
     let name = this.state.tasks[randomNum];
+    {name};
     alert(name);
   }
 
@@ -70,7 +72,9 @@ export class App extends React.Component<{}, IState> {
             onChange={e => this.setState({ currentTask: e.target.value })}
           />
           <button type="submit">Add</button>
-          <button type="submit">Random</button>
+        </form>
+        <form onClick={e => this.randomTask(e)}>
+          <button>Random</button>
         </form>
         <section>{this.renderTasks()}</section>
       </div>
