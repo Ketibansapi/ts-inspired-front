@@ -1,4 +1,4 @@
-# react-todo-list
+# react-ts-lists
 
 ## Install
 
