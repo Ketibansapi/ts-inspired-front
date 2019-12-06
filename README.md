@@ -6,15 +6,21 @@
 User can add, remove and random their names. Implementing typescript on react, packed on webpack. Inpired-mobile assesstment.
 
 
-### Screenshots
+### Screenshot
 
-Coming Soon
+![Screenshot (402)](https://user-images.githubusercontent.com/42229194/70329921-73ba8580-1877-11ea-8c33-0660cee095ce.png)
 
 ### Installation
 
 ```bash
 $ npm install
 ```
+
+### Criteria
+-	Compiled without errors
+-	Includes some form of state management
+-	Compiled code should run on Internet Explorer 11+
+-	Utilized Webpack
 
 ### Running the app
 
