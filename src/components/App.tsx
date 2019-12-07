@@ -3,7 +3,6 @@ import * as React from "react";
 export class App extends React.Component<{}, IState> {
   constructor(props: {}) {
     super(props);
-
     this.state = {
       currentTask: "",
       tasks: []
@@ -19,7 +18,8 @@ export class App extends React.Component<{}, IState> {
         {
           id: this._timeInMilliseconds(),
           value: this.state.currentTask,
-          completed: false
+          completed: false,
+          chosenBefore: false
         }
       ]
     });
@@ -41,16 +41,38 @@ export class App extends React.Component<{}, IState> {
 
   public randomTask(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    let randomNum = Math.floor(Math.random() * this.state.tasks.length);
-    let task = this.state.tasks[randomNum];
-    alert(task.value);
+    let tasks = this.state.tasks;
+    let filtered = tasks.filter(task => !task.chosenBefore);
+    let randomNum = Math.floor(Math.random() * filtered.length);
+    let task = tasks[randomNum];
+    let newTasks = filtered.map(taskS => {
+      if (taskS.id === task.id) {
+        return {
+          ...taskS,
+          chosenBefore: true
+        };
+      } else {
+        return {
+          ...taskS
+        };
+      }
+    });
+    this.setState({ tasks: newTasks });
+
+    if (filtered.includes(task) && typeof task.id !== "undefined") {
+      alert(task.value);
+    } else {
+      alert("no more options");
+    }
   }
 
   public renderTasks(): JSX.Element[] {
     return this.state.tasks.map((task: ITask, index: number) => {
       return (
         <div key={task.id} className="tdl-task">
-          <span className={task.completed ? "is-completed" : ""}>{task.value}</span>
+          <span className={task.completed ? "is-completed" : ""}>
+            {task.value}
+          </span>
           <button onClick={() => this.deleteTask(task.id)}>Remove</button>
         </div>
       );
@@ -58,7 +80,6 @@ export class App extends React.Component<{}, IState> {
   }
 
   public render(): JSX.Element {
-    console.log(this.state);
     return (
       <div>
         <h1>React Names Lists</h1>
@@ -95,4 +116,5 @@ interface ITask {
   id: number;
   value: string;
   completed: boolean;
+  chosenBefore: boolean;
 }
